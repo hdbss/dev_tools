@@ -31,6 +31,7 @@ def covert_format(pdfPath, imagePath, img_format, text3):
         pyMuPDF_fitz(pdfPath, imagePath, img_format)
         text3.delete(1.0, tkinter.END)
         text3.insert('insert', '成功')
+        # text.insert(index,string)  index = x.y的形式,x表示行，y表示列
         print('成功')
     except:
         print('失败，请重新再来')
@@ -57,7 +58,7 @@ def PdfGui():
     # 输入框框架
     frame_label = tkinter.Frame(window)
     frame_label.grid(row=7, column=0, ipadx=50, ipady=10, padx=20)
-    label1 = tkinter.Label(frame_label, text='输入pdf路径:', font=(None, 16))
+    label1 = tkinter.Label(frame_label, text='输入pdf路径:', font=(None, 16))  # width,height,bg
     label2 = tkinter.Label(frame_label, text='输入img路径:', font=(None, 16))
     label1.grid(row=7, column=0, sticky=tkinter.SE)
     label2.grid(row=8, column=0, sticky=tkinter.SE)
