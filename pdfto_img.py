@@ -27,16 +27,24 @@ def pyMuPDF_fitz(pdfPath, imagePath, img_type='jpg'):
 
 
 def covert_format(pdfPath, imagePath, img_format, text3):
-    try:
-        pyMuPDF_fitz(pdfPath, imagePath, img_format)
+    if not os.path.isfile(pdfPath):
         text3.delete(1.0, tkinter.END)
-        text3.insert('insert', '成功')
-        # text.insert(index,string)  index = x.y的形式,x表示行，y表示列
-        print('成功')
-    except:
-        print('失败，请重新再来')
+        text3.insert('insert', 'pdf文件不存在，需重新输入')
+    elif not os.path.exists(imagePath):
         text3.delete(1.0, tkinter.END)
-        text3.insert('insert', '失败，请重新再来')
+        text3.insert('insert', '图片路径不存在，需重新输入')
+    else:
+        try:
+            pyMuPDF_fitz(pdfPath, imagePath, img_format)
+            text3.delete(1.0, tkinter.END)
+            text3.insert('insert', '成功')
+            # text.insert(index,string)  index = x.y的形式,x表示行，y表示列
+            print('成功')
+        except:
+            print('失败，请重新再来')
+            text3.delete(1.0, tkinter.END)
+            text3.insert('insert', '失败，请重新再来')
+
 
 def PdfGui():
     window = tkinter.Tk()
