@@ -1,0 +1,45 @@
+# coding=utf-8
+import socket
+import threading
+import tkinter
+tk = tkinter.Tk()
+tk.title('qq')
+host = '172.16.2.15'
+port = 9999
+d1 = socket.socket()
+d1.connect((host, port))
+
+
+def send_ims(ims, d1=d1):
+    print(ims)
+    d1.send(ims.encode())
+    print(']]]]]]]]]]]]]]]]')
+
+
+def recx(d1=d1):
+    while True:
+        ims = d1.recv(1024)
+        print(ims.decode())
+        v.set(ims.decode())
+        print('|||||||||||||||')
+
+
+v = tkinter.StringVar()
+s1 = tkinter.Label(tk, width=100, textvariable=v, height=17, )
+s1.pack()
+s2 = tkinter.Text(tk, width=40, height=1)
+s2.pack()
+
+s3 = tkinter.Button(tk, text='发送', anchor='w', command=lambda: send_ims(s2.get('0.0', 'end'), d1=d1))
+s3.pack()
+try:
+    print('start :||||')
+    dd1 = threading.Thread(target=recx,)
+    dd1.start()
+except:
+    print('false')
+    pass
+print('12312312312321312312321|||||||||||')
+tk.mainloop()
+
+
